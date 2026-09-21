@@ -1,0 +1,9 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /families/{familyId}/events/{eventId} {
+      allow read, create: if request.auth != null && familyId == 'mae-alix-family';
+      allow update, delete: if false;
+    }
+  }
+}
